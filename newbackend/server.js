@@ -53,13 +53,14 @@ io.on("connection",(socket)=>{
         console.log("User joined Room : "+room);
     })
   socket.on("new message",(newMessageReceived)=>{
+    console.log("newmessage")
     var chat = newMessageReceived.chat;
     if(!chat.users) return console.log("chats users not defined");
 
     chat.users.forEach(user=>{
         if(user._id == newMessageReceived.sender._id) return;
 
-        socket.in(user._id).emit("message received",newMessageReceived);
+        socket.in(user._id).emit("message recieved",newMessageReceived);
     })
   })
 
