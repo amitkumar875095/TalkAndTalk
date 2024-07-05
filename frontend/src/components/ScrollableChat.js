@@ -1,6 +1,7 @@
 import { Avatar } from "@chakra-ui/avatar";
 import { Tooltip } from "@chakra-ui/tooltip";
 import ScrollableFeed from "react-scrollable-feed";
+import ProfileModal from "./miscellaneous/ProfileModal";
 import {
   isLastMessage,
   isSameSender,
@@ -20,14 +21,18 @@ const ScrollableChat = ({ messages }) => {
             {(isSameSender(messages, m, i, user._id) ||
               isLastMessage(messages, i, user._id)) && (
               <Tooltip label={m.sender.name} placement="bottom-start" hasArrow>
+                <ProfileModal user = {m.sender} >
                 <Avatar
                   mt="7px"
                   mr={1}
                   size="sm"
                   cursor="pointer"
                   name={m.sender.name}
-                  src={m.sender.pic}
+                  src={m.sender.pic} 
+
                 />
+                </ProfileModal>
+              
               </Tooltip>
             )}
             <span
